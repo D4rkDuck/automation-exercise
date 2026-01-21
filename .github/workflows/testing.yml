@@ -33,7 +33,7 @@ jobs:
       - name: "Upload Artifact"
         uses: actions/upload-artifact@v4
         with:
-          name: .coverage
+          name: coverage-data
           path: .coverage
           include-hidden-files: true
           retention-days: 1
@@ -49,12 +49,12 @@ jobs:
       - name: "Download Artifact"
         uses: actions/download-artifact@v4
         with:
-          name: .coverage
-          path: .coverage
+          name: coverage-data
+          path: coverage-data
       - name: "Check if .coverage is downloaded"
-        run: ls -la .coverage
+        run: ls -la coverage-data
       - name: "create report"
-        run: python -m coverage report --no-data
+        run: python -m coverage report
       - name: "create xml"
         run: python -m coverage xml
       - name: Upload Artifact

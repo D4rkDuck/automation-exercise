@@ -58,7 +58,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: .coverage.xml
-          path: .coverage.xml
+          name: coverage.xml
+          path: coverage.xml
           include-hidden-files: true
           retention-days: 14

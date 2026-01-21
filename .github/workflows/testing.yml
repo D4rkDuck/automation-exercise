@@ -51,6 +51,8 @@ jobs:
         with:
           name: .coverage
           path: .coverage
+      - name: "Check if .coverage is downloaded"
+        run: ls -la .coverage
       - name: "create report"
         run: python -m coverage report
       - name: "create xml"

@@ -44,7 +44,8 @@ jobs:
         with:
           name: .coverage
           path: /.coverage
-          retention-days: 5
+          include-hidden-files: true
+          retention-days: 1
   coverage_report:
     needs: test
     runs-on: ubuntu-latest

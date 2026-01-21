@@ -13,16 +13,7 @@ jobs:
           run: pip install black
         - name: "Run style check"
           run: black --check .
-  build:
-    needs: style_check
-    runs-on: ubuntu-latest
-    env:
-      PROJECT_NAME: "Automation Exercise"
-    steps:
-      - name: "Run build phase"
-        run: echo "Building project $PROJECT_NAME"
   test:
-    # needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -42,7 +33,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-data
+          name: .coverage
           path: .coverage
           include-hidden-files: true
           retention-days: 1
@@ -53,6 +44,16 @@ jobs:
       - name: Download Coverage
         uses: actions/download-artifact@v4
         with:
-          name: coverage-data
+          name: .coverage
           path: .coverage
+      - name: "create report"
+        run: python -m coverage report
+      - name: "create xml"
+        run: python -m coverage xml
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: .coverage.xml
+          path: .coverage
+          include-hidden-files: true
           retention-days: 14

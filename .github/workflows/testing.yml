@@ -54,7 +54,7 @@ jobs:
       - name: "Check if .coverage is downloaded"
         run: ls -la .coverage
       - name: "create report"
-        run: python -m coverage report --data-file=/home/runner/work/automation-exercise/automation-exercise/.coverage
+        run: python -m coverage report --no-data
       - name: "create xml"
         run: python -m coverage xml
       - name: Upload Artifact

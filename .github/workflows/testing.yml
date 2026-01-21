@@ -34,10 +34,11 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: coverage
+          name: .coverage
           path: /.coverage
           retention-days: 5
   coverage_report:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Download Coverage
